@@ -93,7 +93,7 @@ public extension CGFloat {
  */
 public func shortestAngleBetween(angle1: CGFloat, angle2: CGFloat) -> CGFloat {
     let twoπ = π * 2.0
-    var angle = (angle2 - angle1);truncatingRemainder(dividingBy: twoπ)
+    var angle = (angle2 - angle1).truncatingRemainder(dividingBy: twoπ)
     if (angle >= π) {
         angle = angle - twoπ
     }

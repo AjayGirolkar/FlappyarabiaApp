@@ -158,37 +158,38 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let offsetY = player.size.height * player.anchorPoint.y
         
         let path = CGMutablePath()
-        path.move(to: CGPoint(x:  22 - offsetX, y: 29 - offsetY),
-                  path.addLine(to: CGPoint(x:  28 - offsetX, 29 - offsetY)
-                  
-                  path.move(to: CGPoint(x:  29 - offsetX, 28 - offsetY)
-        path.move(to: CGPoint(x:  32 - offsetX, 25 - offsetY)
-        path.move(to: CGPoint(x:  37 - offsetX, 12 - offsetY)
-        path.move(to: CGPoint(x:  37 - offsetX, 9 - offsetY)
-        path.move(to: CGPoint(x:  35 - offsetX, 7 - offsetY)
-        path.move(to: CGPoint(x:  25 - offsetX, 4 - offsetY)
-        path.move(to: CGPoint(x:  22 - offsetX, 3 - offsetY)
-        path.move(to: CGPoint(x:  9 - offsetX, 2 - offsetY)
-        path.move(to: CGPoint(x:  2 - offsetX, 13 - offsetY)
-        path.move(to: CGPoint(x:  2 - offsetX, 17 - offsetY)
-        path.move(to: CGPoint(x:  3 - offsetX, 19 - offsetY)
-        path.move(to: CGPoint(x:  12 - offsetX, 25 - offsetY)
         
-        CGPathCloseSubpath(path)
         
-        player.physicsBody = SKPhysicsBody(polygonFromPath: path)
+        path.move(to: CGPoint(x:  22 - offsetX, y: 29 - offsetY))
+        path.addLine(to: CGPoint(x:  28 - offsetX, y: 29 - offsetY))
+        path.move(to: CGPoint(x:  29 - offsetX, y: 28 - offsetY))
+        path.move(to: CGPoint(x:  32 - offsetX, y: 25 - offsetY))
+        path.move(to: CGPoint(x:  37 - offsetX, y: 12 - offsetY))
+        path.move(to: CGPoint(x:  37 - offsetX, y: 9 - offsetY))
+        path.move(to: CGPoint(x:  35 - offsetX, y: 7 - offsetY))
+        path.move(to: CGPoint(x:  25 - offsetX, y: 4 - offsetY))
+        path.move(to: CGPoint(x:  22 - offsetX, y: 3 - offsetY))
+        path.move(to: CGPoint(x:  9 - offsetX, y: 2 - offsetY))
+        path.move(to: CGPoint(x:  2 - offsetX, y: 13 - offsetY))
+        path.move(to: CGPoint(x:  2 - offsetX, y: 17 - offsetY))
+        path.move(to: CGPoint(x:  3 - offsetX, y: 19 - offsetY))
+        path.move(to: CGPoint(x:  12 - offsetX, y: 25 - offsetY))
+        
+        path.closeSubpath()
+        
+        player.physicsBody = SKPhysicsBody(polygonFrom: path)
         player.physicsBody?.categoryBitMask = PhysicsCategory.Player
         player.physicsBody?.collisionBitMask = 0
         player.physicsBody?.contactTestBitMask = PhysicsCategory.Obstacle | PhysicsCategory.Ground
         
         worldNode.addChild(player)
         
-        let moveUp = SKAction.moveByX(0, y: 10, duration: 0.4)
-        moveUp.timingMode = .EaseInEaseOut
-        let moveDown = moveUp.reversedAction()
+        let moveUp = SKAction.moveBy(x: 0, y: 10, duration: 0.4)
+        moveUp.timingMode = .easeInEaseOut
+        let moveDown = moveUp.reversed()
         let sequence = SKAction.sequence([moveUp, moveDown])
-        let `repeat` = SKAction.repeatActionForever(sequence)
-        player.runAction(`repeat`, withKey: "Wobble")
+        let `repeat` = SKAction.repeatForever(sequence)
+        player.run(`repeat`, withKey: "Wobble")
         
     }
     
@@ -366,7 +367,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for i in 0..<kNumBirdFrames {
             textures.append(SKTexture(imageNamed: "Bird\(i)"))
         }
-        for i in (kNumBirdFrames-1).int(through: 0, by: -1) {
+        
+        for i in stride(from: kNumBirdFrames-1, to: 0, by: -1) {
             textures.append(SKTexture(imageNamed: "Bird\(i)"))
         }
         
@@ -387,165 +389,165 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let offsetY = sprite.size.height * sprite.anchorPoint.y
         
         let path = CGMutablePath()
-            path.move (to: CGPoint(x:  37 - offsetX, y: 80 - offsetY),
-                      transform: path.move(to: CGPoint (x: 25 - offsetX, y: 180 - offsetY)),
-
-        
-                       path.move(to: CGPoint(x: 25 - offsetX, y: 180 - offsetY)
-                       path.move(to: CGPoint(x:  25 - offsetX, y: 180 - offsetY)
-                                          path.move(to: CGPoint(x: (x: 8 - offsetX, y: 273 - offsetY));
-        path.move(to: CGPoint(x: (x: 28 - offsetX, y: 280 - offsetY))
-        path.move(to: CGPoint(x: (x: 52 - offsetX, y: 312 - offsetY))
-        path.move(to: CGPoint(x: (x: 52 - offsetX, y: 312 - offsetY))
-        path.move(to: CGPoint(x: (x: 52 - offsetX, y: 312 - offsetY))
+        path.move(to: CGPoint(x:  37 - offsetX, y: 80 - offsetY))
+        path.move(to: CGPoint(x: 25 - offsetX, y: 180 - offsetY))
         
         
-      
-        path.move(to: CGPoint(x: (x: 53 - offsetX, y: 315 - offsetY))
-        path.move(to: CGPoint(x: (x: 53 - offsetX, y: 315 - offsetY))
-        path.move(to: CGPoint(x: (x: 53 - offsetX, y: 315 - offsetY))
-        path.move(to: CGPoint(x: (x: 30 - offsetX, y: 315 - offsetY))
-
-        path.move(to: CGPoint(x: (x: 8 - offsetX, y: 311 - offsetY))
+        path.move(to: CGPoint(x: 25 - offsetX, y: 180 - offsetY))
+        path.move(to: CGPoint(x:  25 - offsetX, y: 180 - offsetY))
+        path.move(to: CGPoint(x:  8 - offsetX, y: 273 - offsetY))
+        path.move(to: CGPoint(x: 28 - offsetX, y: 280 - offsetY))
+        path.move(to: CGPoint(x: 52 - offsetX, y: 312 - offsetY))
+        path.move(to: CGPoint(x: 52 - offsetX, y: 312 - offsetY))
+        path.move(to: CGPoint(x: 52 - offsetX, y: 312 - offsetY))
         
         
-
-        path.move(to: CGPoint(x: (x: 3 - offsetX, y: 313 - offsetY))
-
-        path.move(to: CGPoint(x: (x: 3 - offsetX, y: 311 - offsetY))
-
-        path.move(to: CGPoint(x: (x: 1 - offsetX, y: 307 - offsetY))
         
-
-        path.move(to: CGPoint(x: (x: 1 - offsetX, y: 312 - offsetY))
+        path.move(to: CGPoint(x: 53 - offsetX, y: 315 - offsetY))
+        path.move(to: CGPoint(x: 53 - offsetX, y: 315 - offsetY))
+        path.move(to: CGPoint(x: 53 - offsetX, y: 315 - offsetY))
+        path.move(to: CGPoint(x: 30 - offsetX, y: 315 - offsetY))
         
-
-        path.move(to: CGPoint(x: (x: 21 - offsetX, y: 281 - offsetY))
-
-        path.move(to: CGPoint(x: (x: 36 - offsetX, y: 264 - offsetY))
-        path.move(to: CGPoint(x: (x: 50 - offsetX, y: 244 - offsetY))
-
-        path.move(to: CGPoint(x: (x: 5 - offsetX, y: 218 - offsetY))
-        path.move(to: CGPoint(x: (x: 3 - offsetX, y: 204 - offsetY))
-        path.move(to: CGPoint(x: (x: -1 - offsetX, y: 204 - offsetY))
-        path.move(to: CGPoint(x: (x: 9 - offsetX, y: 156 - offsetY))
-
-        path.move(to: CGPoint(x: (x: 9 - offsetX, y: 126 - offsetY))
-
-        path.move(to: CGPoint(x:  9 - offsetX, 126 - offsetY);
-        path.move(to: CGPoint(x:  9 - offsetX, 126 - offsetY);
-        path.move(to: CGPoint(x:  9 - offsetX, 126 - offsetY);
-        path.move(to: CGPoint(x:  46 - offsetX, 172 - offsetY);
-        path.move(to: CGPoint(x:  46 - offsetX, 172 - offsetY);
-        path.move(to: CGPoint(x:  40 - offsetX, 212 - offsetY);
-        path.move(to: CGPoint(x:  29 - offsetX, 203 - offsetY);
-        path.move(to: CGPoint(x:  28 - offsetX, 228 - offsetY);
-        path.move(to: CGPoint(x:  29 - offsetX, 292 - offsetY);
-        path.move(to: CGPoint(x:  9 - offsetX, 311 - offsetY);
-        path.move(to: CGPoint(x:  35 - offsetX, 75 - offsetY);
-        path.move(to: CGPoint(x:  15 - offsetX, 88 - offsetY);
-        path.move(to: CGPoint(x:  3 - offsetX, 93 - offsetY);
-        path.move(to: CGPoint(x:  3 - offsetX, 108 - offsetY);
-        path.move(to: CGPoint(x:  12 - offsetX, 108 - offsetY);
-        path.move(to: CGPoint(x:  20 - offsetX, 128 - offsetY);
-        path.move(to: CGPoint(x:  22 - offsetX, 138 - offsetY);
-        path.move(to: CGPoint(x:  26 - offsetX, 146 - offsetY);
-        path.move(to: CGPoint(x:  50 - offsetX, 152 - offsetY);
-        path.move(to: CGPoint(x:  51 - offsetX, 171 - offsetY);
-        path.move(to: CGPoint(x:  8 - offsetX, 140 - offsetY);
-        path.move(to: CGPoint(x:  34 - offsetX, 126 - offsetY);
-        path.move(to: CGPoint(x:  44 - offsetX, 127 - offsetY);
-        path.move(to: CGPoint(x:  52 - offsetX, 126 - offsetY);
-        path.move(to: CGPoint(x:  52 - offsetX, 141 - offsetY);
-        path.move(to: CGPoint(x:  43 - offsetX, 141 - offsetY);
-        path.move(to: CGPoint(x:  39 - offsetX, 141 - offsetY);
-        path.move(to: CGPoint(x:  25 - offsetX, 141 - offsetY);
-        path.move(to: CGPoint(x:  42 - offsetX, 88 - offsetY);
-        path.move(to: CGPoint(x:  49 - offsetX, 78 - offsetY);
-        path.move(to: CGPoint(x:  14 - offsetX, 60 - offsetY);
-        path.move(to: CGPoint(x:  6 - offsetX, 50 - offsetY);
-        path.move(to: CGPoint(x:  11 - offsetX, 28 - offsetY);
-        path.move(to: CGPoint(x:  50 - offsetX, 28 - offsetY);
-        path.move(to: CGPoint(x:  50 - offsetX, 28 - offsetY);
-        path.move(to: CGPoint(x:  50 - offsetX, 10 - offsetY);
-        path.move(to: CGPoint(x:  34 - offsetX, 10 - offsetY);
-        path.move(to: CGPoint(x:  8 - offsetX, 10 - offsetY);
-        path.move(to: CGPoint(x:  8 - offsetX, 10 - offsetY);
-        path.move(to: CGPoint(x:  5 - offsetX, 21 - offsetY);
-        path.move(to: CGPoint(x:  9 - offsetX, 5 - offsetY);
-        path.move(to: CGPoint(x:  33 - offsetX, 5 - offsetY);
-        path.move(to: CGPoint(x:  45 - offsetX, 5 - offsetY);
-        path.move(to: CGPoint(x:  45 - offsetX, 45 - offsetY);
-        path.move(to: CGPoint(x:  48 - offsetX, 45 - offsetY);
-        path.move(to: CGPoint(x:  50 - offsetX, 45 - offsetY);
-        path.move(to: CGPoint(x:  50 - offsetX, 45 - offsetY);
-        path.move(to: CGPoint(x:  51 - offsetX, 46 - offsetY);
-        path.move(to: CGPoint(x:  51 - offsetX, 46 - offsetY);
-        path.move(to: CGPoint(x:  52 - offsetX, 47 - offsetY);
-        path.move(to: CGPoint(x:  15 - offsetX, 257 - offsetY);
-        path.move(to: CGPoint(x:  40 - offsetX, 261 - offsetY);
-        path.move(to: CGPoint(x:  44 - offsetX, 269 - offsetY);
-        path.move(to: CGPoint(x:  47 - offsetX, 271 - offsetY);
-        path.move(to: CGPoint(x:  50 - offsetX, 280 - offsetY);
-        path.move(to: CGPoint(x:  50 - offsetX, 280 - offsetY);
-        path.move(to: CGPoint(x:  50 - offsetX, 280 - offsetY);
-        path.move(to: CGPoint(x:  50 - offsetX, 280 - offsetY);
-        path.move(to: CGPoint(x:  50 - offsetX, 294 - offsetY);
-        path.move(to: CGPoint(x:  0 - offsetX, 291 - offsetY);
-        path.move(to: CGPoint(x:  0 - offsetX, 291 - offsetY);
-        path.move(to: CGPoint(x:  1 - offsetX, 302 - offsetY);
-        path.move(to: CGPoint(x:  2 - offsetX, 267 - offsetY);
-        path.move(to: CGPoint(x:  27 - offsetX, 244 - offsetY);
-        path.move(to: CGPoint(x:  4 - offsetX, 240 - offsetY);
-        path.move(to: CGPoint(x:  51 - offsetX, 225 - offsetY);
-        path.move(to: CGPoint(x:  20 - offsetX, 214 - offsetY);
-        path.move(to: CGPoint(x:  5 - offsetX, 228 - offsetY);
-        path.move(to: CGPoint(x:  11 - offsetX, 233 - offsetY);
-        path.move(to: CGPoint(x:  8 - offsetX, 240 - offsetY);
-        path.move(to: CGPoint(x:  35 - offsetX, 224 - offsetY);
-        path.move(to: CGPoint(x:  1 - offsetX, 163 - offsetY);
-        path.move(to: CGPoint(x:  7 - offsetX, 126 - offsetY);
-        path.move(to: CGPoint(x:  2 - offsetX, 126 - offsetY);
-        path.move(to: CGPoint(x:  6 - offsetX, 81 - offsetY);
-        path.move(to: CGPoint(x:  24 - offsetX, 102 - offsetY);
-        path.move(to: CGPoint(x:  26 - offsetX, 123 - offsetY);
-        path.move(to: CGPoint(x:  26 - offsetX, 123 - offsetY);
-        path.move(to: CGPoint(x:  19 - offsetX, 122 - offsetY);
-        path.move(to: CGPoint(x:  19 - offsetX, 122 - offsetY);
-        path.move(to: CGPoint(x:  21 - offsetX, 93 - offsetY);
-        path.move(to: CGPoint(x:  16 - offsetX, 61 - offsetY);
-        path.move(to: CGPoint(x:  14 - offsetX, 21 - offsetY);
-        path.move(to: CGPoint(x:  11 - offsetX, 94 - offsetY);
-        path.move(to: CGPoint(x:  18 - offsetX, 109 - offsetY);
-        path.move(to: CGPoint(x:  31 - offsetX, 108 - offsetY);
-        path.move(to: CGPoint(x:  50 - offsetX, 259 - offsetY);
-        path.move(to: CGPoint(x:  7 - offsetX, 258 - offsetY);
-        path.move(to: CGPoint(x:  5 - offsetX, 255 - offsetY);
-        path.move(to: CGPoint(x:  34 - offsetX, 249 - offsetY);
-        path.move(to: CGPoint(x:  1 - offsetX, 314 - offsetY);
-        path.move(to: CGPoint(x:  1 - offsetX, 314 - offsetY);
-        path.move(to: CGPoint(x:  52 - offsetX, 243 - offsetY);
-        path.move(to: CGPoint(x:  6 - offsetX, 311 - offsetY);
-        path.move(to: CGPoint(x:  1 - offsetX, 311 - offsetY);
-        path.move(to: CGPoint(x:  50 - offsetX, 292 - offsetY);
-        path.move(to: CGPoint(x:  11 - offsetX, 289 - offsetY);
-        path.move(to: CGPoint(x:  9 - offsetX, 311 - offsetY);
-        path.move(to: CGPoint(x:  4 - offsetX, 310 - offsetY);
-        path.move(to: CGPoint(x:  41 - offsetX, 297 - offsetY);
-        path.move(to: CGPoint(x:  26 - offsetX, 259 - offsetY);
-        path.move(to: CGPoint(x:  15 - offsetX, 307 - offsetY);
-        path.move(to: CGPoint(x:  11 - offsetX, 303 - offsetY);
-        path.move(to: CGPoint(x:  21 - offsetX, 301 - offsetY);
-        path.move(to: CGPoint(x:  12 - offsetX, 307 - offsetY);
-        path.move(to: CGPoint(x:  3 - offsetX, 314 - offsetY);
-        path.move(to: CGPoint(x:  4 - offsetX, 314 - offsetY);
-        path.move(to: CGPoint(x:  3 - offsetX, 298 - offsetY);
-        path.move(to: CGPoint(x:  51 - offsetX, 301 - offsetY);
-        path.move(to: CGPoint(x:  9 - offsetX, 313 - offsetY);
-        path.move(to: CGPoint(x:  33 - offsetX, 248 - offsetY);
-        path.move(to: CGPoint(x:  19 - offsetX, 237 - offsetY);
-        path.move(to: CGPoint(x:  12 - offsetX, 297 - offsetY);
-
+        path.move(to: CGPoint(x: 8 - offsetX, y: 311 - offsetY))
+        
+        
+        
+        path.move(to: CGPoint(x: 3 - offsetX, y: 313 - offsetY))
+        
+        path.move(to: CGPoint(x: 3 - offsetX, y: 311 - offsetY))
+        
+        path.move(to: CGPoint(x: 1 - offsetX, y: 307 - offsetY))
+        
+        
+        path.move(to: CGPoint(x: 1 - offsetX, y: 312 - offsetY))
+        
+        
+        path.move(to: CGPoint(x: 21 - offsetX, y: 281 - offsetY))
+        
+        path.move(to: CGPoint(x: 36 - offsetX, y: 264 - offsetY))
+        path.move(to: CGPoint(x: 50 - offsetX, y: 244 - offsetY))
+        
+        path.move(to: CGPoint(x: 5 - offsetX, y: 218 - offsetY))
+        path.move(to: CGPoint(x:  3 - offsetX, y: 204 - offsetY))
+        path.move(to: CGPoint(x: -1 - offsetX, y: 204 - offsetY))
+        path.move(to: CGPoint(x:  9 - offsetX, y: 156 - offsetY))
+        
+        path.move(to: CGPoint(x: 9 - offsetX, y: 126 - offsetY))
+        
+        path.move(to: CGPoint(x:  9 - offsetX,  y:126 - offsetY))
+        path.move(to: CGPoint(x:  9 - offsetX,  y:126 - offsetY))
+        path.move(to: CGPoint(x:  9 - offsetX,  y:126 - offsetY))
+        path.move(to: CGPoint(x:  46 - offsetX, y: 172 - offsetY))
+        path.move(to: CGPoint(x:  46 - offsetX, y: 172 - offsetY))
+        path.move(to: CGPoint(x:  40 - offsetX, y: 212 - offsetY))
+        path.move(to: CGPoint(x:  29 - offsetX, y: 203 - offsetY))
+        path.move(to: CGPoint(x:  28 - offsetX, y: 228 - offsetY))
+        path.move(to: CGPoint(x:  29 - offsetX, y: 292 - offsetY))
+        path.move(to: CGPoint(x:  9 - offsetX,  y:311 - offsetY))
+        path.move(to: CGPoint(x:  35 - offsetX, y: 75 - offsetY))
+        path.move(to: CGPoint(x:  15 - offsetX, y: 88 - offsetY))
+        path.move(to: CGPoint(x:  3 - offsetX,  y:93 - offsetY))
+        path.move(to: CGPoint(x:  3 - offsetX,  y:108 - offsetY))
+        path.move(to: CGPoint(x:  12 - offsetX, y: 108 - offsetY))
+        path.move(to: CGPoint(x:  20 - offsetX, y: 128 - offsetY))
+        path.move(to: CGPoint(x:  22 - offsetX, y: 138 - offsetY))
+        path.move(to: CGPoint(x:  26 - offsetX, y: 146 - offsetY))
+        path.move(to: CGPoint(x:  50 - offsetX, y: 152 - offsetY))
+        path.move(to: CGPoint(x:  51 - offsetX, y: 171 - offsetY))
+        path.move(to: CGPoint(x:  8 - offsetX,  y:140 - offsetY))
+        path.move(to: CGPoint(x:  34 - offsetX, y: 126 - offsetY))
+        path.move(to: CGPoint(x:  44 - offsetX, y: 127 - offsetY))
+        path.move(to: CGPoint(x:  52 - offsetX, y: 126 - offsetY))
+        path.move(to: CGPoint(x:  52 - offsetX, y: 141 - offsetY))
+        path.move(to: CGPoint(x:  43 - offsetX, y: 141 - offsetY))
+        path.move(to: CGPoint(x:  39 - offsetX, y: 141 - offsetY))
+        path.move(to: CGPoint(x:  25 - offsetX, y: 141 - offsetY))
+        path.move(to: CGPoint(x:  42 - offsetX, y: 88 - offsetY))
+        path.move(to: CGPoint(x:  49 - offsetX, y: 78 - offsetY))
+        path.move(to: CGPoint(x:  14 - offsetX, y: 60 - offsetY))
+        path.move(to: CGPoint(x:  6 - offsetX,  y:50 - offsetY))
+        path.move(to: CGPoint(x:  11 - offsetX, y: 28 - offsetY))
+        path.move(to: CGPoint(x:  50 - offsetX, y: 28 - offsetY))
+        path.move(to: CGPoint(x:  50 - offsetX, y: 28 - offsetY))
+        path.move(to: CGPoint(x:  50 - offsetX, y: 10 - offsetY))
+        path.move(to: CGPoint(x:  34 - offsetX, y: 10 - offsetY))
+        path.move(to: CGPoint(x:  8 - offsetX,  y:10 - offsetY))
+        path.move(to: CGPoint(x:  8 - offsetX,  y:10 - offsetY))
+        path.move(to: CGPoint(x:  5 - offsetX,  y:21 - offsetY))
+        path.move(to: CGPoint(x:  9 - offsetX,  y:5 - offsetY))
+        path.move(to: CGPoint(x:  33 - offsetX, y: 5 - offsetY))
+        path.move(to: CGPoint(x:  45 - offsetX, y: 5 - offsetY))
+        path.move(to: CGPoint(x:  45 - offsetX, y: 45 - offsetY))
+        path.move(to: CGPoint(x:  48 - offsetX, y: 45 - offsetY))
+        path.move(to: CGPoint(x:  50 - offsetX, y: 45 - offsetY))
+        path.move(to: CGPoint(x:  50 - offsetX, y: 45 - offsetY))
+        path.move(to: CGPoint(x:  51 - offsetX, y: 46 - offsetY))
+        path.move(to: CGPoint(x:  51 - offsetX, y: 46 - offsetY))
+        path.move(to: CGPoint(x:  52 - offsetX, y: 47 - offsetY))
+        path.move(to: CGPoint(x:  15 - offsetX, y: 257 - offsetY))
+        path.move(to: CGPoint(x:  40 - offsetX, y: 261 - offsetY))
+        path.move(to: CGPoint(x:  44 - offsetX, y: 269 - offsetY))
+        path.move(to: CGPoint(x:  47 - offsetX, y: 271 - offsetY))
+        path.move(to: CGPoint(x:  50 - offsetX, y: 280 - offsetY))
+        path.move(to: CGPoint(x:  50 - offsetX, y: 280 - offsetY))
+        path.move(to: CGPoint(x:  50 - offsetX, y: 280 - offsetY))
+        path.move(to: CGPoint(x:  50 - offsetX, y: 280 - offsetY))
+        path.move(to: CGPoint(x:  50 - offsetX, y: 294 - offsetY))
+        path.move(to: CGPoint(x:  0 - offsetX,  y:291 - offsetY))
+        path.move(to: CGPoint(x:  0 - offsetX,  y:291 - offsetY))
+        path.move(to: CGPoint(x:  1 - offsetX,  y:302 - offsetY))
+        path.move(to: CGPoint(x:  2 - offsetX,  y:267 - offsetY))
+        path.move(to: CGPoint(x:  27 - offsetX, y: 244 - offsetY))
+        path.move(to: CGPoint(x:  4 - offsetX,  y:240 - offsetY))
+        path.move(to: CGPoint(x:  51 - offsetX, y: 225 - offsetY))
+        path.move(to: CGPoint(x:  20 - offsetX, y: 214 - offsetY))
+        path.move(to: CGPoint(x:  5 - offsetX,  y:228 - offsetY))
+        path.move(to: CGPoint(x:  11 - offsetX, y: 233 - offsetY))
+        path.move(to: CGPoint(x:  8 - offsetX,  y:240 - offsetY))
+        path.move(to: CGPoint(x:  35 - offsetX, y: 224 - offsetY))
+        path.move(to: CGPoint(x:  1 - offsetX,  y:163 - offsetY))
+        path.move(to: CGPoint(x:  7 - offsetX,  y:126 - offsetY))
+        path.move(to: CGPoint(x:  2 - offsetX,  y:126 - offsetY))
+        path.move(to: CGPoint(x:  6 - offsetX,  y:81 - offsetY))
+        path.move(to: CGPoint(x:  24 - offsetX, y: 102 - offsetY))
+        path.move(to: CGPoint(x:  26 - offsetX, y: 123 - offsetY))
+        path.move(to: CGPoint(x:  26 - offsetX, y: 123 - offsetY))
+        path.move(to: CGPoint(x:  19 - offsetX, y: 122 - offsetY))
+        path.move(to: CGPoint(x:  19 - offsetX, y: 122 - offsetY))
+        path.move(to: CGPoint(x:  21 - offsetX, y: 93 - offsetY))
+        path.move(to: CGPoint(x:  16 - offsetX, y: 61 - offsetY))
+        path.move(to: CGPoint(x:  14 - offsetX, y: 21 - offsetY))
+        path.move(to: CGPoint(x:  11 - offsetX, y: 94 - offsetY))
+        path.move(to: CGPoint(x:  18 - offsetX, y: 109 - offsetY))
+        path.move(to: CGPoint(x:  31 - offsetX, y: 108 - offsetY))
+        path.move(to: CGPoint(x:  50 - offsetX, y: 259 - offsetY))
+        path.move(to: CGPoint(x:  7 - offsetX,  y:258 - offsetY))
+        path.move(to: CGPoint(x:  5 - offsetX,  y:255 - offsetY))
+        path.move(to: CGPoint(x:  34 - offsetX, y: 249 - offsetY))
+        path.move(to: CGPoint(x:  1 - offsetX,  y:314 - offsetY))
+        path.move(to: CGPoint(x:  1 - offsetX,  y:314 - offsetY))
+        path.move(to: CGPoint(x:  52 - offsetX, y: 243 - offsetY))
+        path.move(to: CGPoint(x:  6 - offsetX,  y:311 - offsetY))
+        path.move(to: CGPoint(x:  1 - offsetX,  y:311 - offsetY))
+        path.move(to: CGPoint(x:  50 - offsetX, y: 292 - offsetY))
+        path.move(to: CGPoint(x:  11 - offsetX, y: 289 - offsetY))
+        path.move(to: CGPoint(x:  9 - offsetX,  y:311 - offsetY))
+        path.move(to: CGPoint(x:  4 - offsetX,  y:310 - offsetY))
+        path.move(to: CGPoint(x:  41 - offsetX, y: 297 - offsetY))
+        path.move(to: CGPoint(x:  26 - offsetX, y: 259 - offsetY))
+        path.move(to: CGPoint(x:  15 - offsetX, y: 307 - offsetY))
+        path.move(to: CGPoint(x:  11 - offsetX, y: 303 - offsetY))
+        path.move(to: CGPoint(x:  21 - offsetX, y: 301 - offsetY))
+        path.move(to: CGPoint(x:  12 - offsetX, y: 307 - offsetY))
+        path.move(to: CGPoint(x:  3 - offsetX,  y:314 - offsetY))
+        path.move(to: CGPoint(x:  4 - offsetX,  y:314 - offsetY))
+        path.move(to: CGPoint(x:  3 - offsetX,  y:298 - offsetY))
+        path.move(to: CGPoint(x:  51 - offsetX, y: 301 - offsetY))
+        path.move(to: CGPoint(x:  9 - offsetX,  y:313 - offsetY))
+        path.move(to: CGPoint(x:  33 - offsetX, y: 248 - offsetY))
+        path.move(to: CGPoint(x:  19 - offsetX, y: 237 - offsetY))
+        path.move(to: CGPoint(x:  12 - offsetX, y: 297 - offsetY))
+        
         
         path.closeSubpath()
         
@@ -601,7 +603,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func stopSpawning() {
         
-        removeAction(forKey: removeActionforKey,: removeActionforKey: "spawn")
+        //removeAction(forKey: removeActionforKey, removeActionforKey: "spawn")
         
         worldNode.enumerateChildNodes(withName: "TopObstacle", using: { node, stop in
             node.removeAllActions()
@@ -626,8 +628,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
     }
+                  
+        
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)  {
+       override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)  {
         
         guard let touch = touches.first else {
             return
@@ -764,7 +768,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func updateScore() {
         
-        worldNode.enumerateChildNodesWithName("BottomObstacle", usingBlock: { node, stop in
+        worldNode.enumerateChildNodes(withName: "BottomObstacle", using: { node, stop in
             if let obstacle = node as? SKSpriteNode {
                 if let passed = obstacle.userData?["Passed"] as? NSNumber {
                     if passed.boolValue {
@@ -772,10 +776,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     }
                 }
                 if self.player.position.x > obstacle.position.x + obstacle.size.width/2 {
-                    self.score++
+                    self.score += 1
                     self.scoreLabel.text = "\(self.score)"
-                    self.runAction(self.coinAction)
-                    obstacle.userData?["Passed"] = NSNumber(bool: true)
+                    self.run(self.coinAction)
+                    obstacle.userData?["Passed"] = NSNumber(value: true)
                 }
             }
         })

@@ -30,10 +30,10 @@ import SpriteKit
  */
 public class SKTEffect {
   unowned var node: SKNode
-  var duration: NSTimeInterval
+    var duration: TimeInterval
   public var timingFunction: ((CGFloat) -> CGFloat)?
 
-  public init(node: SKNode, duration: NSTimeInterval) {
+    public init(node: SKNode, duration: TimeInterval) {
     self.node = node
     self.duration = duration
     timingFunction = SKTTimingFunctionLinear
@@ -52,7 +52,7 @@ public class SKTMoveEffect: SKTEffect {
   var delta: CGPoint
   var previousPosition: CGPoint
   
-  public init(node: SKNode, duration: NSTimeInterval, startPosition: CGPoint, endPosition: CGPoint) {
+    public init(node: SKNode, duration: TimeInterval, startPosition: CGPoint, endPosition: CGPoint) {
     previousPosition = node.position
     self.startPosition = startPosition
     delta = endPosition - startPosition
@@ -77,7 +77,7 @@ public class SKTScaleEffect: SKTEffect {
   var delta: CGPoint
   var previousScale: CGPoint
 
-  public init(node: SKNode, duration: NSTimeInterval, startScale: CGPoint, endScale: CGPoint) {
+    public init(node: SKNode, duration: TimeInterval, startScale: CGPoint, endScale: CGPoint) {
     previousScale = CGPoint(x: node.xScale, y: node.yScale)
     self.startScale = startScale
     delta = endScale - startScale
@@ -101,7 +101,7 @@ public class SKTRotateEffect: SKTEffect {
   var delta: CGFloat
   var previousAngle: CGFloat
 
-  public init(node: SKNode, duration: NSTimeInterval, startAngle: CGFloat, endAngle: CGFloat) {
+  public init(node: SKNode, duration: TimeInterval, startAngle: CGFloat, endAngle: CGFloat) {
     previousAngle = node.zRotation
     self.startAngle = startAngle
     delta = endAngle - startAngle
@@ -120,15 +120,15 @@ public class SKTRotateEffect: SKTEffect {
  * Wrapper that allows you to use SKTEffect objects as regular SKActions.
  */
 public extension SKAction {
-  public class func actionWithEffect(effect: SKTEffect) -> SKAction {
-    return SKAction.customActionWithDuration(effect.duration) { node, elapsedTime in
+    class func actionWithEffect(effect: SKTEffect) -> SKAction {
+        return SKAction.customAction(withDuration: effect.duration) { node, elapsedTime in
       var t = elapsedTime / CGFloat(effect.duration)
 
       if let timingFunction = effect.timingFunction {
         t = timingFunction(t)  // the magic happens here
       }
 
-      effect.update(t)
+        effect.update(t: t)
     }
   }
 }

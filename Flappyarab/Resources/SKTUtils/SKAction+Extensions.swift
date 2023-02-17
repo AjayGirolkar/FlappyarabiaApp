@@ -31,7 +31,7 @@ public extension SKAction {
    * Creates an action to perform a parabolic jump.
    */
     class func jumpToHeight(height: CGFloat, duration: TimeInterval, originalPosition: CGPoint) -> SKAction {
-        return SKAction.customAction(withDuration: customActionwithDuration, customActionwithDuration: duration) {(node, elapsedTime) in
+    return SKAction.customAction(withDuration: duration) {(node, elapsedTime) in
       let fraction = elapsedTime / CGFloat(duration)
       let yOffset = height * 4 * fraction * (1 - fraction)
       node.position = CGPoint(x: originalPosition.x, y: originalPosition.y + yOffset)

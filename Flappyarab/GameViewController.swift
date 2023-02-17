@@ -26,7 +26,7 @@ class GameViewController: UIViewController, GameSceneDelegate {
                 skView.showsPhysics = false
                 skView.ignoresSiblingOrder = true
                 
-                scene.scaleMode = .AspectFill
+                scene.scaleMode = .aspectFill
                 
                 skView.presentScene(scene)
                 
@@ -37,21 +37,17 @@ class GameViewController: UIViewController, GameSceneDelegate {
     }
     
     
-    
-    
-    
-    
-    
-    
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
+    override var prefersStatusBarHidden: Bool {
+          get {
+              return true
+          }
+      }
     
     func screenshot() -> UIImage {
         
         UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, 1.0)
-        view.drawViewHierarchyInRect(view.bounds, afterScreenUpdates: true)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
+        view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+        guard let image = UIGraphicsGetImageFromCurrentImageContext() else { return UIImage() }
         UIGraphicsEndImageContext()
         return image
         
@@ -59,7 +55,7 @@ class GameViewController: UIViewController, GameSceneDelegate {
     
     func shareString(string: String, url: NSURL, image: UIImage) {
         let vc = UIActivityViewController(activityItems: [string, url, image], applicationActivities: nil)
-        presentViewController(vc, animated: true, completion: nil)
+        present(vc, animated: true, completion: nil)
     }
     
 }
